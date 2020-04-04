@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+
+ .sing{
+  margin: 30px;
+ }
+
+ .sing_text{
+   width: 25%;
+ }

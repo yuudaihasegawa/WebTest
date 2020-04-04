@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center sing">ログイン</h2>
+    </div>
+  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="row">
+      <div class="col-12">
+        <div class="field text-center">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス",class:"sing_text" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="field text-center">
+          <%= f.password_field :password, autocomplete: "current-password",placeholder: "パスワード",class:"sing_text" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <% if devise_mapping.rememberable? %>
+          <div class="field text-center">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="actions text-center">
+          <%= f.submit "ログイン", class:"sing btn btn-success" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
