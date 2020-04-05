@@ -1,0 +1,24 @@
+<div class="container show_body">
+  <div class="status-page">
+    <div class="row">
+      <div class="col-3 text-center">
+        <%= attachment_image_tag @user, :profile_image_id, size: "100x100", fallback: "no_image.jpg" %>
+      </div>
+      <div class="col-9 text-write">
+        <%= @user.name %><br/>
+        <%= @user.id %>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="text-write">
+        <%= @user.introduction %>
+      </div>
+      <div class="row">
+        <div class="col-7"></div>
+        <div class="col-5 text-left">
+          <%= link_to "プロフィールを編集", edit_user_path,class:"btn btn-primary",role:"button" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
