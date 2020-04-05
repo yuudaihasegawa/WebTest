@@ -1,0 +1,16 @@
+<div class="container">
+  <%= form_for(@post, url: user_posts_path(@user)) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title, class:"form-control" %>
+    <%= f.label :text %>
+    <%= f.text_area :text, class:"form-control" %>
+
+    <%= f.fields_for :categories do |t| %>
+      <%= render 'category_fields', f: t %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "カテゴリーを追加", f, :categories ,class:"btn btn-success" %>
+    </div>
+    <%= f.submit "投稿する",class:"btn btn-primary" %>
+  <% end %>
+</div>
