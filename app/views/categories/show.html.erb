@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1><p class="btn btn-primary btn-lg"><%= @category.name %></p>のスレッド</h1>
+    </div>
+  </div>
+  <table class="table table-striped">
+		<tbody>
+		    <% @posts.each do |post| %>
+				<tr>
+					<td>
+					  <%= link_to post_path(post) do %>
+					    <%= post.title %>
+					  <% end %>
+					</td>
+          <td><%= post.created_at %></td>
+					<td><%= post.user.name %></td>
+					<td>
+					   <p>レス数<%= post.responses.count %></p>
+					</td>
+				</tr>
+		    <% end %>
+		</tbody>
+	</table>
+</div>

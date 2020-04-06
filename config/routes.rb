@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   resources :users, only:[:edit,:update,:show,:destroy] do
     resources :posts, only:[:new,:create]
   end
-  resources :posts, only:[:index,:show]
+  resources :posts, only:[:index,:show] do
+    resources :responses, only:[:create]
+  end
+  resources :categories, only:[:index,:show]
+
 end

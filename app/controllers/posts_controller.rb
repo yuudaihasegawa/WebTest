@@ -6,6 +6,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @response = Response.new
+    @user = User.find(current_user.id)
   end
 
   def new
@@ -16,12 +18,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    # errorの際の変数
-    @user = User.find(params[:user_id])
     # 生成処理
     @category = Category.new
-    @post = Post.new(post_params)
-    @post.user_id = @user.id
+    @post = current_user.post.new(post_params)
     @categories = params.dig(:post,:categories_attributes)
     unless @categories.blank?
       if @post.save
