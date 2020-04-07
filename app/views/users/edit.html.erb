@@ -1,29 +1,31 @@
-<div class="container show_body">
-  <%= form_for @user, url: user_path(@user) do |f| %> 
-    <div class="status-page">
+<div class="container">
+  <%= form_for @user, url: user_path(@user) do |f| %>
+    <div class="form-group">
       <div class="row">
-        <div class="col-3 text-center">
-          <%= attachment_image_tag @user, :profile_image_id, size: "100x100", fallback: "no_image.jpg" %>
-          <%= f.attachment_field :profile_image ,placeholder:"プロフィール画像"%>
-        </div>
-        <div class="col-9 text-write">
-          <%= f.text_field :name ,placeholder: "名前"%><br/>
-          <%= @user.id %>
+        <div class="col-12 text-center">
+          <%= f.label :profile_image %><br/>
+          <%= f.attachment_field :profile_image,class:"btn btn-secondary",placeholder:"プロフィール画像"%>
         </div>
       </div>
-      <div class="col-12">
-        <div class="text-write">
-          <%= f.text_area :introduction, autofocus: true,placeholder: "自己紹介" %>
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.label :name %>
+          <%= f.text_field :name,class:"form-control",placeholder: "名前"%><br/>
         </div>
-        <div class="row">
-          <div class="col-5"></div>
-          <div class="col-4">
-            <%= link_to "キャンセル", user_path,class:"btn btn-primary",role:"button" %>
-          </div>
-          <div class="col-3">
-            <%= f.submit "変更を保存", class:"btn btn-success" %>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.label :introduction %>
+          <%= f.text_area :introduction, class:"form-control", autofocus: true,placeholder: "自己紹介" %>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 text-center">
+        <%= link_to "キャンセル", user_path,class:"btn btn-primary",role:"button" %>
+      </div>
+      <div class="col-6 text-center">
+        <%= f.submit "変更を保存", class:"btn btn-success" %>
       </div>
     </div>
   <% end %>

@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-12">
         <%= @post.user.name %>
-        <%= @post.created_at %>
+        <%= @post.created_at.to_s(:datetime_jp) %>
       </div>
     </div>
     <div class="row">
@@ -31,7 +31,7 @@
     <div class="col-12">
       <%= form_for(@response, url: post_responses_path(@post)) do |f| %>
         <h2>レスを書き込む</h2>
-        <%= f.text_area :text, class:"form-control" %>
+        <%= f.text_area :message, class:"form-control" %>
         <%= f.submit "投稿する",class:"btn btn-primary" %>
       <% end %>
     </div>
@@ -40,13 +40,13 @@
     <div class="response-block">
       <div class="row">
         <div class="col-12 text-write">
-          <%= response.created_at %>
+          <%= response.created_at.to_s(:datetime_jp) %>
           <%= response.user.name %>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <%= response.text %>
+          <%= response.message %>
         </div>
       </div>
     </div>

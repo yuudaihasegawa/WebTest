@@ -13,7 +13,7 @@
 					    <%= post.title %>
 					  <% end %>
 					</td>
-          <td><%= post.created_at %></td>
+          <td><%= post.created_at.to_s(:datetime_jp) %></td>
 					<td><%= post.user.name %></td>
 					<td>
 					   <p>レス数<%= post.responses.count %></p>

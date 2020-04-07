@@ -9,8 +9,53 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="ナビゲーションの切替">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <h1>WebTest</h1>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item-search navbar-expand-lg">
+              <div class="form-inline">
+                <%= form_tag(posts_path,method: :get) do %>
+                  <div class="form-group">
+                    <%= text_field_tag :search, "",class:"form-control", size:"40", placeholder: "スレッド・レスを検索" %>
+                    <%= button_tag '検索'.html_safe, type: 'submit',class:"btn btn-dark", :name => nil %>
+                  </div>
+                <% end %>
+              </div>
+            </li>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light ml-auto">
+              <li class="nav-item dropdown">
+              <% if user_signed_in? %>
+                <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">ドロップダウン</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#"><%= link_to "カテゴリー",categories_path %></a>
+                  <a class="dropdown-item" href="#"><%= link_to "スレッド",posts_path %></a>
+                  <a class="dropdown-item" href="#"><%= link_to "マイページ", user_path(current_user.id) %></a>
+                  <a class="dropdown-item" href="#"><%= link_to "投稿", new_user_post_path(current_user.id) %></a>
+                  <a class="dropdown-item" href="#"></a>
+                </div>
+              <% else%>
+              <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">ドロップダウン</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#"><%= link_to "カテゴリー",categories_path %></a>
+                  <a class="dropdown-item" href="#"><%= link_to "スレッド",posts_path %></a>
+                </div>
+              <% end %>
+              </li>
+            </nav>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

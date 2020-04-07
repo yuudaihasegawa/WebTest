@@ -1,7 +1,15 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all
+    unless params[:search].blank?
+      post = Post.where("title LIKE ?","%#{params[:search]}%")
+      text = Post.where("text LIKE ?","%#{params[:search]}%")
+      response =  Post.joins(:responses).where("message LIKE ?","%#{params[:search]}%")
+      q = text | post
+      @posts = (response | q)
+    else
+      @posts = Post.all
+    end
   end
 
   def show
@@ -20,7 +28,7 @@ class PostsController < ApplicationController
   def create
     # 生成処理
     @category = Category.new
-    @post = current_user.post.new(post_params)
+    @post = current_user.posts.build(post_params)
     @categories = params.dig(:post,:categories_attributes)
     unless @categories.blank?
       if @post.save

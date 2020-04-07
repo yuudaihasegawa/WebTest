@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 2020_04_04_110827) do
   create_table "responses", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
-    t.text "text"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["text"], name: "index_responses_on_text"
+    t.index ["message"], name: "index_responses_on_message"
   end
 
   create_table "users", force: :cascade do |t|

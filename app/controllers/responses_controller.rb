@@ -15,6 +15,6 @@ class ResponsesController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:user_id,:post_id,:text)
+    params.require(:response).permit(:user_id,:post_id,:message)
   end
 end
