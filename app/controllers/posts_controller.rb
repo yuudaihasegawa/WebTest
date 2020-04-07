@@ -15,7 +15,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @response = Response.new
-    @user = User.find(current_user.id)
   end
 
   def new
