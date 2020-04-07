@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :login_user, only: [:edit,:update,:following,:followers]
-
-
+  before_action :login_user, only: [:edit,:update]
   def login_user
-    @user = User.find(params[:id])
-    if @user != current_user
-      redirect_to user_path(current_user)
+    unless user_signed_in? 
+      redirect_to new_user_registration_path
     end
   end
 
@@ -22,7 +19,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = 'プロフィールを変更しました'
       redirect_to user_path(@user)
     else
       render :edit

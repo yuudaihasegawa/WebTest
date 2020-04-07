@@ -1,4 +1,11 @@
 class PostsController < ApplicationController
+
+  before_action :login_user, only: [:new,:create]
+  def login_user
+    unless user_signed_in? 
+      redirect_to new_user_registration_path
+    end
+  end
   
   def index
     unless params[:search].blank?

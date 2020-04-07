@@ -1,5 +1,12 @@
 class ResponsesController < ApplicationController
 
+  before_action :login_user, only: [:create]
+  def login_user
+    unless user_signed_in? 
+      redirect_to new_user_registration_path
+    end
+  end
+
   def create
     @post = Post.find(params[:post_id])
     @response = current_user.responses.new(response_params)
