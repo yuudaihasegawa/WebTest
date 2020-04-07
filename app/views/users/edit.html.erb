@@ -1,0 +1,42 @@
+<div class="container">
+  <% if @user.errors.any? %>
+    <div class="error_explanation">
+      <h2 class="text-center"><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <p class="text-center"><%= message %></p>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_for @user, url: user_path(@user) do |f| %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.label :profile_image %><br/>
+          <%= f.attachment_field :profile_image,class:"btn btn-secondary",placeholder:"プロフィール画像"%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.label :name %>
+          <%= f.text_field :name,class:"form-control",placeholder: "名前"%><br/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.label :introduction %>
+          <%= f.text_area :introduction, class:"form-control", autofocus: true,placeholder: "自己紹介" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 text-center">
+        <%= link_to "キャンセル", user_path,class:"btn btn-primary",role:"button" %>
+      </div>
+      <div class="col-6 text-center">
+        <%= f.submit "変更を保存", class:"btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>

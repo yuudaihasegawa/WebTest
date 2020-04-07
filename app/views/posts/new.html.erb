@@ -1,0 +1,43 @@
+<div class="container">
+  <% if @post.errors.any? %>
+    <div class="error_explanation">
+      <h2 class="text-center"><%= @post.errors.count %>errors prohibited this obj from being saved:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <p class="text-center"><%= message %></p>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_for(@post, url: user_posts_path(@user)) do |f| %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.label :title %>
+          <%= f.text_field :title, class:"form-control",size:"100" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.label :text %>
+          <%= f.text_area :text, class:"form-control" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.fields_for :categories do |t| %>
+            <%= render 'category_fields', f: t %>
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association "カテゴリーを追加", f, :categories ,class:"btn btn-success" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= f.submit "投稿する",class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <% @posts.each do |post| %>
+    <div class="post-index">
+      <div class="row">
+        <div class="col-3">
+          <%= attachment_image_tag post.user, :profile_image, size: "100x100", fallback: "no_image.jpg" %>
+        </div>
+        <div class="col-9">
+          <h2>
+            <%= link_to post_path(post) do %>
+              <%= post.title %>
+            <% end %>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <%= post.text %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-right">
+          <%= post.user.name %>
+          <%= post.created_at.to_s(:datetime_jp) %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10 text-right">
+          <% post.categories.each do |category| %>
+            <%= link_to category_path(category),class:"btn btn-primary btn-sm" do %>
+              <%= category.name %>
+              (<%= category.post_categories.count %>)
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-2 text-right">
+          <p>レス数<%= post.responses.count %>件</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
