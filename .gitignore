@@ -31,3 +31,5 @@
 /config/master.key
 /config/database.yml
 /db/seeds.rb
+
+/.env
