@@ -9,6 +9,10 @@ WebTestディレイトリで下記の手順でコマンドを実行するとご�
 2. bin/rails db:migrate RAILS_ENV=development  
 3. rails s -b 0.0.0.0  
   
+  
+  
+  
+  
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
