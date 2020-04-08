@@ -32,9 +32,12 @@ class PostsController < ApplicationController
   end
 
   def create
+    # errorの際の変数
+    @user = User.find(params[:user_id])
     # 生成処理
     @category = Category.new
-    @post = current_user.posts.build(post_params)
+    @post = Post.new(post_params)
+    @post.user_id = @user.id
     @categories = params.dig(:post,:categories_attributes)
     unless @categories.blank?
       if @post.save
